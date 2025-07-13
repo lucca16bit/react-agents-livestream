@@ -1,4 +1,6 @@
-export type GetRoomsApiResponse = Array<{
+export type GetRoomsResponse = Array<{
     id: string;
     name: string;
+    questions: number;
+    createdAt: string;
 }>;
