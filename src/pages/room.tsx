@@ -3,10 +3,7 @@ import { Link, Navigate, useParams } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { QuestionForm } from '@/components/ui/question-form';
 import { QuestionList } from '@/components/ui/question-list';
-
-type RoomParams = {
-    roomId: string;
-};
+import type { RoomParams } from '@/types/room-params.type';
 
 export function Room() {
     const params = useParams<RoomParams>();
