@@ -1,3 +1,7 @@
-import type { Question } from '@/interfaces/question.interface';
-
-export type GetQuestionsResponse = Question[];
+export type GetQuestionsResponse = Array<{
+    id: string;
+    question: string;
+    answer: string | null;
+    createdAt: string;
+    isGeneratingAnswer?: boolean;
+}>;

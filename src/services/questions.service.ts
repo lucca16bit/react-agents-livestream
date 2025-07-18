@@ -34,8 +34,63 @@ export function useCreateQuestion(roomId: string) {
 
             return result;
         },
-        onSuccess: () => {
-            queryClient.invalidateQueries({ queryKey: ['get-questions', roomId] });
+        // executa no momento em que for chamada para API
+        onMutate({ question }) {
+            const questions = queryClient.getQueryData<GetQuestionsResponse>([
+                'get-questions',
+                roomId,
+            ]);
+
+            const questionsArray = questions ?? [];
+
+            const newQuestion = {
+                id: crypto.randomUUID(),
+                question,
+                answer: null,
+                createdAt: new Date().toISOString(),
+                isGeneratingAnswer: true,
+            };
+
+            queryClient.setQueryData<GetQuestionsResponse>(
+                ['get-questions', roomId],
+                [newQuestion, ...questionsArray]
+            );
+
+            return { newQuestion, questions };
+        },
+        onSuccess(data, _variables, context) {
+            queryClient.setQueryData<GetQuestionsResponse>(
+                ['get-questions', roomId],
+                (questions) => {
+                    if (!questions) {
+                        return questions;
+                    }
+
+                    if (!context.newQuestion) {
+                        return questions;
+                    }
+
+                    return questions.map((question) => {
+                        if (question.id === context.newQuestion.id) {
+                            return {
+                                ...context.newQuestion,
+                                id: data.questionId,
+                                answer: data.answer,
+                            };
+                        }
+
+                        return question;
+                    });
+                }
+            );
+        },
+        onError(_error, _variables, context) {
+            if (context?.questions) {
+                queryClient.setQueryData<GetQuestionsResponse>(
+                    ['get-questions', roomId],
+                    context.questions
+                );
+            }
         },
     });
 }
