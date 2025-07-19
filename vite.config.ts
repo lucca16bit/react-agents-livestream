@@ -10,4 +10,15 @@ export default defineConfig({
             '@': path.resolve(__dirname, './src'),
         },
     },
+    build: {
+        rollupOptions: {
+            external: [],
+        },
+        commonjsOptions: {
+            include: [/dayjs/, /node_modules/],
+        },
+    },
+    optimizeDeps: {
+        include: ['dayjs', 'dayjs/locale/pt-br'],
+    },
 });
