@@ -3,7 +3,7 @@ import type { CreateQuestionRequest } from '@/types/create-question-request.type
 import type { CreateQuestionResponse } from '@/types/create-question-response.type';
 import type { GetQuestionsResponse } from '@/types/question-response.type';
 
-const API_URL = 'http://localhost:3000/api/rooms/';
+const API_URL = 'https://node-agents-livestream.onrender.com/api/rooms/';
 
 export function useGetQuestion(roomId: string) {
     return useQuery({

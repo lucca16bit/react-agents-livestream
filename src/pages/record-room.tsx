@@ -12,7 +12,7 @@ type RoomParams = {
     roomId: string;
 };
 
-const API_URL = 'http://localhost:3000/api/rooms/';
+const API_URL = 'https://node-agents-livestream.onrender.com/api/rooms/';
 
 export function RecordRoom() {
     const params = useParams<RoomParams>();

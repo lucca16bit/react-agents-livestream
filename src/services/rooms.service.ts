@@ -3,7 +3,7 @@ import type { CreateRoomRequest } from '@/types/create-room-request.type';
 import type { CreateRoomResponse } from '@/types/create-room-response.type';
 import type { GetRoomsResponse } from '@/types/room-response.type';
 
-const API_URL = 'http://localhost:3000/api/rooms';
+const API_URL = 'https://node-agents-livestream.onrender.com/api/rooms';
 
 export function useGetRooms() {
     return useQuery({
