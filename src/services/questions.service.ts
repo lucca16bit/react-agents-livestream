@@ -76,6 +76,7 @@ export function useCreateQuestion(roomId: string) {
                                 ...context.newQuestion,
                                 id: data.questionId,
                                 answer: data.answer,
+                                isGeneratingAnswer: false,
                             };
                         }
 

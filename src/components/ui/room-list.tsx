@@ -15,7 +15,7 @@ export function RoomList() {
     const { data, isLoading } = useGetRooms();
 
     return (
-        <Card>
+        <Card className="w-full">
             <CardHeader>
                 <CardTitle>Salas recentes</CardTitle>
                 <CardDescription>

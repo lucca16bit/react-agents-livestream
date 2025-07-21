@@ -41,7 +41,7 @@ export function CreateRoomForm() {
     }
 
     return (
-        <Card>
+        <Card className="w-full">
             <CardHeader>
                 <CardTitle>Criar sala</CardTitle>
                 <CardDescription>
